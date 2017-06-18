@@ -7,7 +7,6 @@ import utility.fileIO;
 import java.awt.Point;
 import java.io.IOException;
 import java.nio.charset.Charset;
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -21,11 +20,7 @@ public class Solver {
 
 
     public void setPath(String path) {
-        try {
-            this.pathGrid = generatePath(fileIO.readFile(path, Charset.defaultCharset()));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        this.pathGrid = generatePath(path);
     }
 
     public Point findA(){
@@ -120,6 +115,8 @@ public class Solver {
     public Solver(String path){
         setPath(path);
     }
+
+    public Solver() {}
 
 
 }

@@ -1,6 +1,6 @@
 package maze_solver.data_types;
 
-import java.awt.*;
+import java.awt.Point;
 
 /**
  * Created by jphamlett on 6/16/17.

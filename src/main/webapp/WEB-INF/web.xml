@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+        <!DOCTYPE web-app
+                PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+                "http://java.sun.com/dtd/web-app_2_3.dtd">
+
+<web-app>
+
+
+    <!-- General description of your web application -->
+
+    <display-name>Paths</display-name>
+    <description>
+        This will find the shortest path in a given maze
+    </description>
+
+    <context-param>
+        <param-name>webmaster</param-name>
+        <param-value>hamle010@umn.edu</param-value>
+        <description>
+            The EMAIL address of the administrator to whom questions
+            and comments about this application should be addressed.
+        </description>
+    </context-param>
+
+    <servlet>
+        <servlet-name>controller</servlet-name>
+        <description>
+            This servlet plays the "controller" role in the MVC architecture
+            used in this application.  It is generally mapped to the ".do"
+            filename extension with a servlet-mapping element, and all form
+            submits in the app will be submitted to a request URI like
+            "saveCustomer.do", which will therefore be mapped to this servlet.
+
+            The initialization parameter namess for this servlet are the
+            "servlet path" that will be received by this servlet (after the
+            filename extension is removed).  The corresponding value is the
+            name of the action class that will be used to process this request.
+        </description>
+        <servlet-class>utility.ControllerServlet</servlet-class>
+        <!-- Load this servlet at server startup time -->
+    </servlet>
+
+
+    <servlet-mapping>
+        <servlet-name>controller</servlet-name>
+        <url-pattern>*.do</url-pattern>
+    </servlet-mapping>
+
+    <welcome-file-list>
+        <welcome-file>index.do</welcome-file>
+    </welcome-file-list>
+
+
+</web-app>

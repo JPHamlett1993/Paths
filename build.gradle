@@ -1,0 +1,72 @@
+apply plugin: 'idea'
+apply plugin: 'eclipse'
+apply plugin: 'war'
+
+import org.apache.tools.ant.filters.ReplaceTokens
+
+compileJava {
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+}
+
+eclipse.classpath.downloadSources = true
+eclipse.classpath.downloadJavadoc = true
+
+war.archiveName "paths.war"
+repositories {
+    maven { url 'https://repo.maven.apache.org/maven2/' }
+    flatDir(dirs: 'dep-lib')
+}
+
+dependencies {
+    providedCompile 'javax.servlet:javax.servlet-api:3.1.+'
+    providedCompile 'javax.servlet.jsp:javax.servlet.jsp-api:2.3.+'
+
+    // explicit, so that we don't get the jar file in the project
+    compile 'log4j:log4j:1.2.+'
+
+    compile 'org.apache.commons:commons-lang3:3.+'
+    compile 'commons-validator:commons-validator:1.4.+'
+
+
+    compile 'javax.servlet:jstl:1.2'
+    compile 'org.json:json:20140107'
+
+    testCompile 'junit:junit:5.+'
+    testCompile 'commons-io:commons-io:2.4'
+    testCompile group: 'org.springframework', name: 'spring-core', version: '4.2.6.RELEASE'
+    testCompile group: 'org.springframework', name: 'spring-test', version: '4.2.6.RELEASE'
+}
+
+task versionWebXml(type: Copy) {
+    println("Copy")
+    from('src/main/webapp/WEB-INF/') {
+        filter(ReplaceTokens, tokens: project.ext.properties)
+        include 'web.xml'
+    }
+    println("${buildDir}")
+    into "${buildDir}"
+}
+
+war {
+    println("WAR")
+    webInf {
+        setDuplicatesStrategy "EXCLUDE"
+    }
+    webXml = file("${buildDir}/web.xml")
+}
+
+
+task devDeploy(type: Copy) {
+    if (file("dev.properties").exists()) {
+        ext.devProps = new Properties()
+        devProps.load(new FileInputStream("dev.properties"))
+        from war.archivePath
+        into devProps['deployDir'] + "/webapps/"
+    }
+}
+
+war.dependsOn versionWebXml
+war.dependsOn test
+devDeploy.dependsOn war
+

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+  ~ Copyright (c) 2014 Regents of the University of Minnesota. All rights reserved.
+  -->
+
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+    <appender name="ecas" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="Append" value="true"/>
+        <param name="File" value="${catalina.home}/logs/ecas.log"/>
+        <param name="DatePattern" value="'.'yyyy-MM-dd'.log'"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%-5p %d{DATE} %c{1} %x - %m%n"/>
+        </layout>
+    </appender>
+
+    <appender name="ecas-batch" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="Append" value="true"/>
+        <param name="File" value="${catalina.home}/logs/ecas-batch.log"/>
+        <param name="DatePattern" value="'.'yyyy-MM-dd'.log'"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" valstue="%-5p %d{DATE} %c{1} %x - %m%n"/>
+        </layout>
+    </appender>
+
+    <category name="edu.umn.web.pillar.clientutils" additivity="false">
+        <priority value="info"/>
+        <appender-ref ref="ecas"/>
+    </category>
+
+    <category name="edu.umn.web.ecas" additivity="false">
+        <priority value="info"/>
+        <appender-ref ref="ecas"/>
+    </category>
+
+    <!--
+    <category name="edu.umn.web.ecas.action.AutoSaveProposalAction">
+        <priority value="debug"/>
+    </category>
+    -->
+    <category name="edu.umn.web.ecas.batch" additivity="false">
+        <priority value="info"/>
+        <appender-ref ref="ecas-batch"/>
+    </category>
+</log4j:configuration>

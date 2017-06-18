@@ -10,9 +10,9 @@ import java.awt.*;
 public class Test_Solver {
 
     String testPath[] = {"##########", "#A...#...#", "#.#.##.#.#", "#.#.##.#.#", "#.#....#B#", "#.#.##.#.#", "#....#...#", "##########"};
-    String fileLocationNoA = "maze1NoA.txt";
-    String fileLocationNoB = "maze1NoB.txt";
-    String fileLocation = "maze1.txt";
+    String fileLocationNoA = "test/maze1NoA.txt";
+    String fileLocationNoB = "test/maze1NoB.txt";
+    String fileLocation = "test/maze1.txt";
 
     @Test
     public void testPathSetter(){

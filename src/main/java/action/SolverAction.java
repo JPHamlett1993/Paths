@@ -20,15 +20,15 @@ public class SolverAction {
         System.out.println("Request: " + request.getParameter("path"));
         String path = request.getParameter("path");
 
+
         if (request == null || response == null) {
             throw new ServletException("Null request/response object(s).");
         }
 
         Solver solver = new Solver(path);
         mazeNode solution = solver.solve(new int[solver.getPath().length][solver.getPath()[0].length()], solver.findA(), solver.findB());
-        System.out.println(solution);
-        request.setAttribute("path", solution);
-        request.setAttribute("", "");
+        System.out.println(path);
+        request.setAttribute("path", path);
 
         httpAction.forwardTo(
                 "index.jsp",

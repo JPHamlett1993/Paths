@@ -16,6 +16,15 @@
         <script src="assets/script/form.js"></script>
     </head>
     <body>
+        <% System.out.println("PATH: " + pageContext.getAttribute("path")); %>
+        <c:choose>
+            <c:when test="${not empty path}">
+                PATH SET
+            </c:when>
+            <c:otherwise>
+                PATH EMPTY
+            </c:otherwise>
+        </c:choose>
         <div class="centered">
             <form class="mui-form">
                 <textarea placeholder="Enter Maze Here" id="path" rows="15"></textarea>

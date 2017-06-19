@@ -16,19 +16,24 @@
         <script src="assets/script/form.js"></script>
     </head>
     <body id = "body">
-        <c:choose>
-            <c:when test="${not empty path}">
-                ${path}
-            </c:when>
-            <c:otherwise>
-                <div class="centered">
-                    <form class="mui-form">
-                        <textarea placeholder="Enter Maze Here" id="path" rows="15"></textarea>
-                        <br/>
-                        <button type="button" onclick="solve()" class="mui-btn mui-btn--raised">Solve</button>
-                    </form>
-                </div>
-            </c:otherwise>
-        </c:choose>
+            <c:choose>
+                <c:when test="${not empty path}">
+                    <div class="<c:out value="${cssMazeClass}"/>">
+                    Took <c:out value="${pathSteps}"/> Steps to complete the maze
+                    ${path}
+                    <button type=button" onclick="reload()" class="mui-btn mui-btn--raised">Solve another maze</button>
+                    </div>
+                </c:when>
+                <c:otherwise>
+            <div class="centered">
+                        <form class="mui-form">
+                            <textarea placeholder="Enter Maze Here" id="path" rows="15" style="white-space: pre; overflow: scroll;" wrap="off"></textarea>
+                            <br/>
+                            <button type="button" onclick="solve()" class="mui-btn mui-btn--raised">Solve</button>
+                        </form>
+            </div>
+                </c:otherwise>
+            </c:choose>
+
     </body>
 </html>

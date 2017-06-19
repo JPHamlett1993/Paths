@@ -8,7 +8,47 @@
     transform: -ms-translate(-50%, -50%);
 }
 
-.block {
+.maze_large {
+    padding-left: 15%;
+    padding-top: 15%;
+}
+
+.maze_medium {
+    padding-left: 15%;
+    padding-top: 10%;
+}
+
+.maze_small {
+    padding-left: 45%;
+    padding-top: 18%;
+}
+
+.rowwrap {
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.rowwrap::after {
+    content: '';
+    display: block;
+    clear: both;
+}
+
+.block_small {
+    float: left;
+    width: 5px;
+    height: 5px;
+    border: 1px solid rgba(0, 0, 0, .2);
+}
+
+.block_medium {
+    float: left;
+    width: 15px;
+    height: 15px;
+    border: 1px solid rgba(0, 0, 0, .2);
+}
+
+.block_large {
     float: left;
     width: 20px;
     height: 20px;
@@ -25,4 +65,3 @@
 
 .green {
     background: green;
-}

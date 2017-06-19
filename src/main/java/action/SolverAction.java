@@ -44,24 +44,43 @@ public class SolverAction {
             visualSolution[currNode.getPoint().x][currNode.getPoint().y] = 'S';
             currNode = currNode.getPreultimate();
         }
-        String htmlCode = "";
-        for (char[] charA : visualSolution){
-            for (char c : charA){
-                if (c == 'B') {
-                    htmlCode += "<div class=\"block red\"></div>";
-                }
-                if (c == 'P') {
-                    htmlCode += "<div class=\"block white\"></div>";
-                }
-                if (c == 'S') {
-                    htmlCode += "<div class=\"block green\"></div>";
-                }
-            }
-            htmlCode += "<br/>";
+
+        System.out.println(visualSolution.length);
+        String cssBlockClass = "";
+        String cssMazeClass = "";
+        if (visualSolution[0].length > 100){
+            cssBlockClass = "block_small";
+            cssMazeClass = "maze_large";
+        }
+        if (visualSolution[0].length > 50 && visualSolution[0].length <= 100){
+            cssBlockClass = "block_medium";
+            cssMazeClass = "maze_medium";
+        }
+        if (visualSolution[0].length <= 50){
+            cssBlockClass = "block_large";
+            cssMazeClass = "maze_small";
         }
 
-        System.out.println(htmlCode);
+        String htmlCode = "";
+        for (char[] charA : visualSolution){
+            htmlCode += "<div class=\"rowwrap\">";
+            for (char c : charA){
+                if (c == 'B') {
+                    htmlCode += "<div class=\"" + cssBlockClass + " red\"></div>";
+                }
+                if (c == 'P') {
+                    htmlCode += "<div class=\"" + cssBlockClass + " white\"></div>";
+                }
+                if (c == 'S') {
+                    htmlCode += "<div class=\"" + cssBlockClass + " green\"></div>";
+                }
+            }
+            htmlCode += "</div>";
+        }
+        System.out.println("X: " + visualSolution.length + " Y: " + visualSolution[0].length);
         request.setAttribute("path", htmlCode);
+        request.setAttribute("pathSteps", solution.getDist());
+        request.setAttribute("cssMazeClass", cssMazeClass);
 
 
         httpAction.forwardTo("index.jsp", request, response);

@@ -2,6 +2,9 @@
  * Created by jphamlett on 6/17/17.
  */
 
+function reload() {
+    location.reload();
+}
 
 function solve() {
     console.log("Running")

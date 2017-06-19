@@ -7,3 +7,22 @@
     transform: -moz-translate(-50%, -50%);
     transform: -ms-translate(-50%, -50%);
 }
+
+.block {
+    float: left;
+    width: 20px;
+    height: 20px;
+    border: 1px solid rgba(0, 0, 0, .2);
+}
+
+.red {
+    background: red;
+}
+
+.white {
+    background: white;
+}
+
+.green {
+    background: green;
+}

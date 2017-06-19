@@ -19,15 +19,7 @@ public class IndexAction {
 
     public static void perform(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        System.out.println("ASDFASD");
-        if (request == null || response == null) {
-            throw new ServletException("Null request/response object(s).");
+            httpAction.forwardTo("index.jsp", request, response);
         }
-
-        httpAction.redirectTo(
-                "index.jsp",
-                request,
-                response);
     }
 
-}

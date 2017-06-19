@@ -29,19 +29,22 @@ public class ControllerServlet extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        System.out.println("POST");
         handleRequest(request, response, true);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        System.out.println("GET");
         handleRequest(request, response, false);
     }
 
-    private void handleRequest(HttpServletRequest request, HttpServletResponse response, boolean solver) throws ServletException, IOException {
-        System.out.println("Solver: " + solver);
-        if (!solver) {
-            IndexAction.perform(request, response);
-        } else {
+    private void handleRequest(HttpServletRequest request, HttpServletResponse response, boolean solve) throws ServletException, IOException {
+        System.out.println("Solve: " + solve);
+        if (solve){
+            System.out.println("HERE");
             SolverAction.perform(request, response);
+        } else {
+            IndexAction.perform(request, response);
         }
     }
 

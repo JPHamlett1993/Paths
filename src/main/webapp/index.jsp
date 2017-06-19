@@ -15,21 +15,20 @@
         <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
         <script src="assets/script/form.js"></script>
     </head>
-    <body>
-        <% System.out.println("PATH: " + pageContext.getAttribute("path")); %>
+    <body id = "body">
         <c:choose>
             <c:when test="${not empty path}">
-                PATH SET
+                ${path}
             </c:when>
             <c:otherwise>
-                PATH EMPTY
+                <div class="centered">
+                    <form class="mui-form">
+                        <textarea placeholder="Enter Maze Here" id="path" rows="15"></textarea>
+                        <br/>
+                        <button type="button" onclick="solve()" class="mui-btn mui-btn--raised">Solve</button>
+                    </form>
+                </div>
             </c:otherwise>
         </c:choose>
-        <div class="centered">
-            <form class="mui-form">
-                <textarea placeholder="Enter Maze Here" id="path" rows="15"></textarea>
-                <button type="submit" onclick="solve()" class="mui-btn mui-btn--raised">Submit</button>
-            </form>
-        </div>
     </body>
 </html>

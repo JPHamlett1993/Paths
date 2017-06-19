@@ -29,29 +29,7 @@ dependencies {
     testCompile 'commons-io:commons-io:2.4'
     testCompile group: 'org.springframework', name: 'spring-core', version: '4.2.6.RELEASE'
     testCompile group: 'org.springframework', name: 'spring-test', version: '4.2.6.RELEASE'
-    compile 'org.junit.jupiter:junit-jupiter-api'
-    compile 'junit:junit:4.12'
-    compile 'org.junit.jupiter:junit-jupiter-api'
 }
-
-task versionWebXml(type: Copy) {
-    println("Copy")
-    from('src/main/webapp/WEB-INF/') {
-        filter(ReplaceTokens, tokens: project.ext.properties)
-        include 'web.xml'
-    }
-    println("${buildDir}")
-    into "${buildDir}"
-}
-
-war {
-    println("WAR")
-    webInf {
-        setDuplicatesStrategy "EXCLUDE"
-    }
-    webXml = file("${buildDir}/web.xml")
-}
-
 
 task devDeploy(type: Copy) {
     if (file("dev.properties").exists()) {
@@ -62,7 +40,6 @@ task devDeploy(type: Copy) {
     }
 }
 
-war.dependsOn versionWebXml
 war.dependsOn test
 devDeploy.dependsOn war
 
